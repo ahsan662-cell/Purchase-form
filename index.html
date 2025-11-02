@@ -1,0 +1,1642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purchase Agreement - Inti Water</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .page {
+            width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 15px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .page-border {
+            border: 5px solid #1e5a9e;
+            padding: 20px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+
+
+        .tagline {
+            font-size: 8px;
+            color: #333;
+            letter-spacing: 0.5px;
+            margin-top: 2px;
+        }
+
+        .contact-info {
+            font-size: 9px;
+            line-height: 1.4;
+            color: #000;
+            margin-top: 6px;
+        }
+
+        .contact-info strong {
+            font-weight: bold;
+        }
+
+        .title-section {
+            text-align: center;
+            flex: 1;
+            padding: 120px 20px 0;
+        }
+
+        .main-title {
+            font-size: 30px;
+            font-weight: bold;
+            color: #000;
+            line-height: 1.1;
+        }
+
+        .wqa-section {
+            margin-top: 70px;
+            text-align: right;
+            padding-top: 5px;
+        }
+
+        .member-text {
+            font-size: 7px;
+            color: #666;
+            letter-spacing: 3px;
+            margin-bottom: 5px;
+        }
+
+        .form-row {
+            display: grid;
+            border-radius: 13px;
+            border:1px solid black;
+            border-right: none;
+            gap: 0;
+        }
+
+        .row-3cols {
+            grid-template-columns: 1fr 1fr 1fr;
+            border-radius: 4px;
+        }
+
+        .row-4cols {
+            grid-template-columns: 3fr 1.4fr 1fr 1.2fr;
+        }
+
+        .field-box {
+            border-right: 0.5px solid black;
+            padding: 3px;
+            min-height: 38px;
+            background: #f0f4ff;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .field-box:last-child {
+            border-right: 1px solid #000;
+        }
+
+        .form-row:first-child .field-box {
+            border-top: 1px solid #000;
+        }
+
+        .field-label {
+            font-size: 13px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            color: #000;
+            padding-left: 2px;
+            margin-bottom: 2px;
+        }
+        
+        #field-input {
+            width: 100%;
+            height:40px;
+            padding: 5px;
+            font-size: 15px;    
+            border: none;
+            outline: none;
+            flex: 1;
+        }
+
+        .equipment-section {
+            margin-top: 20px;
+            border: 1.5px solid #000;
+            border-radius: 10px;
+        }
+
+        .equipment-header {
+            background: linear-gradient(to right, #1e5a9e 0%, #00bcd4 100%);
+            color: white;
+            padding: 6px 12px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .equipment-content {   
+            padding: 5px;
+            display: flex;
+            justify-content: left;
+            flex-direction: column;
+            align-items: start;
+            background: white;
+            font-size: 14px;
+        }
+
+        .terms-section {
+            margin-top: 20px;
+            border: 1px solid #000;
+            border-radius: 10px;
+        }
+
+        .terms-header {
+            background: linear-gradient(to right, #1e5a9e 0%, #00bcd4 100%);
+            color: white;
+            padding: 6px 12px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            border-top-left-radius: 9px;
+            border-top-right-radius: 9px;
+        }
+
+        .terms-content {
+            width: 100%;
+        }
+
+        .terms-row {
+            display: flex;
+            gap: 0;
+            border-bottom: 1px solid #000;
+        }
+
+        .terms-row:last-of-type {
+            border-bottom: none;
+        }
+
+        .checkbox-field {
+            border-right: 1.5px solid #000;
+            padding: 8px 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            width: 100%;
+        }
+
+        .checkbox-field input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+        }
+
+        .text-field {
+            border-right: 1px solid #000;
+            padding: 4px 4px;
+            font-size: 12px;
+            font-weight: bold;
+            min-height: 36px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-field {
+            padding: 10px;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+        .abc{
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            gap: 40px; 
+            padding: 5px;
+        }
+        .cancellation-text {
+            padding: 10px;
+            border-top: 1.5px solid #000;
+            font-size: 14px;
+            line-height: 1.5;
+            background: white;
+        }
+        .installation-section {
+            margin-top: 20px;
+            border: 1px solid #000;
+            border-radius: 10px;
+        }
+
+        .installation-header {
+            background: linear-gradient(to right, #1e5a9e 0%, #00bcd4 100%);
+            color: white;
+            padding: 6px 12px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .installation-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1.5fr;
+            gap: 0;
+            background: #f0f4ff;
+        }
+
+        .installation-field {
+            border-right: 1.5px solid #000;
+            border-bottom: 1.5px solid #000;
+            padding: 4px 8px;
+            min-height: 38px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .installation-field:last-child {
+            border-right: none;
+        }
+
+        .installation-row:last-child .installation-field {
+            border-bottom: none;
+        }
+
+        .brand-row {
+            display: grid;
+            grid-template-columns: 3fr 1.5fr;
+            gap: 0;
+        }
+
+        .brand-field {
+            border-right: 1.5px solid #000;
+            padding: 4px 8px;
+            min-height: 38px;
+            background: #f0f4ff;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .checkbox-inline {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 8px;
+            background: #f0f4ff;
+        }
+
+        .checkbox-inline label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 9px;
+        }
+
+        .checkbox-inline input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+        }
+
+        .agreement-box {
+            margin-top: 20px;
+            background: #1e5a9e;
+            color: white;
+            padding: 10px 12px;
+            font-size: 13px;
+            line-height: 1.5;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            border: 1px solid #000;
+            border-bottom: none;
+        }
+
+        .signature-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            /* gap: 0; */
+            border: 1px solid #000;
+        }
+
+        .sig-box {
+            border-right: 1px solid #000;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .sig-box:last-child {
+            border-right: none;
+        }
+
+        .sig-label {
+            font-size: 14px;
+            font-weight: bold;
+            padding: 5px;
+        }
+
+        .date-label {
+            font-size: 15px;
+            font-weight: bold;
+            margin-top: 6px;
+            padding: 4px;
+        }
+
+        .notice-section {
+            margin-top: 15px;
+            border: 1.5px solid #000;
+        }
+
+        .notice-header {
+            background: linear-gradient(to right, #1e5a9e 0%, #00bcd4 100%);
+            color: white;
+            padding: 8px 12px;
+            font-size: 15px;
+            font-weight: bold;
+            text-align: center;
+            letter-spacing: 0.5px;
+        }
+
+        .notice-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+        }
+
+        .notice-column {
+            border-right: 1.5px solid #000;
+            background: white;
+        }
+
+        .notice-column:last-child {
+            border-right: none;
+        }
+
+        .notice-box {
+            padding: 12px;
+            font-size: 7.5px;
+            line-height: 1.5;
+        }
+
+        .notice-box h3 {
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+
+        .notice-box h5 {
+            font-size: 11px;
+            font-weight: bold;
+            margin: 10px 0 6px 0;
+        }
+
+        .notice-box p {
+            margin-bottom: 8px;
+            text-align: justify;
+            font-size: 12px;
+        }
+
+        .blank-line {
+            display: inline-block;
+            border-bottom: 1px solid #000;
+            width: 80px;
+            margin: 0 3px;
+        }
+
+        .address-block {
+            text-align: center;
+            margin: 10px 0;
+            font-size: 8px;
+        }
+
+        .cancel-statement {
+            text-align: center;
+            margin: 15px 0;
+            font-size: 8.5px;
+        }
+
+        .signature-line-section {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            align-items: flex-end;
+        }
+
+        .sig-line-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .signature-underline {
+            border-bottom: 1.5px solid #000;
+            margin-bottom: 3px;
+            height: 35px;
+        }
+
+        .sig-line-wrapper span {
+            font-size: 7px;
+            font-weight: normal;
+        }
+        .Signature1,
+        .Signature2,
+        .Signature3,
+        .Signature4,
+        .Signature5 {
+            box-shadow: 1px solid #000;
+            display: block !important;
+            visibility: visible !important;
+            width: 100% ;
+            height: 300px !important;
+            /* border: 2px solid #333 !important; */
+            background-color: #ffffff !important;
+            cursor: crosshair !important;
+            touch-action: none !important;
+            -webkit-touch-callout: none !important;
+            -webkit-user-select: none !important;
+            user-select: none !important;
+            margin: 0 !important;
+        }
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .page {
+                box-shadow: none;
+                margin: 0;
+            }
+            
+            canvas {
+                display: block !important;
+                page-break-inside: avoid;
+                width: 100% !important;
+            }
+            
+            img.signature-image {
+                display: block !important;
+                page-break-inside: avoid;
+            }
+    }
+        
+
+        @media (max-width: 900px) {
+            .page {
+                width: 100%;
+            }
+            .header {
+                flex-direction: column;
+                align-items: center;
+            }
+            .wqa-section {
+                text-align: center;
+                margin-top: 15px;
+            }
+        }
+
+
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    
+    .page {
+        width: 100%;
+        padding: 10px;
+    }
+    
+    .page-border {
+        padding: 15px;
+    }
+    .header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    
+    .logo-section {
+        align-items: center;
+        margin-bottom: 15px;
+    }
+    .abc{
+        flex-direction: column;
+        display: flex;
+        align-items: start;
+        gap: 10px;
+    }
+    .title-section {
+        padding: 10px 0;
+        margin-bottom: 15px;
+    }
+    
+    .wqa-section {
+        position: absolute;
+        text-align: center;
+        margin-top: 10px;
+    }
+    .wqa-section>img{
+        width: 110px;
+        position: absolute;
+        right: -170px;
+    }
+    
+    .wqa-logo {
+        justify-content: center;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr !important;
+        border: none;
+        gap: 0;
+    }
+    
+    .field-box {
+        border: 1px solid black;
+        padding: 6px;
+    }
+    
+    .form-row .field-box:last-child {
+        border-bottom: 1.5px solid #000;
+    }
+    .equipment-header{
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+    .equipment-content {
+        flex-direction: column;
+        gap: 8px;
+        width: 100%;
+        align-items: flex-start;
+        padding: 7px 3px;
+    }
+    
+    .terms-row {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .checkbox-field, .text-field {
+        border-right: none !important;
+        border-bottom: 1.5px solid #000;
+    }
+    
+    .info-field {
+        border-bottom: 1px solid !important;
+        font-size: 12px;
+    }
+    
+    .installation-row {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .installation-field {
+        border: 1px solid black !important;
+    }
+    
+    .brand-row {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .checkbox-inline {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        padding: 8px;
+    }
+    .signature-section {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .sig-box {
+        border-right: none !important;
+        border-bottom: 1.5px solid #000;
+        min-height: 70px;
+    }
+    
+    .sig-box:last-child {
+        border-bottom: none;
+    }
+    
+    .notice-columns {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .notice-column {
+        border-right: none !important;
+        border-bottom: 1.5px solid #000;
+    }
+    
+    .notice-column:last-child {
+        border-bottom: none;
+    }
+    
+    .main-title {
+        font-size: 26px;
+    }
+    
+    .cd{
+        display: flex;
+        flex-direction: column;
+    }
+    .de{
+        display: flex;
+        flex-direction: column;
+    }
+    .subtitle {
+        font-size: 15px;
+    }
+    
+    .field-label {
+        font-size: 12px;
+    }
+    
+    .field-input {
+        font-size: 12px;
+    }
+    
+    .equipment-header, .terms-header, .installation-header, .notice-header {
+        font-size: 12px;
+        padding: 8px 10px;
+    }
+    
+    .equipment-item {
+        font-size: 132px;
+    }
+    
+    .agreement-box {
+        font-size: 9px;
+        padding: 12px 10px;
+    }
+    
+    .sig-label, .date-label {
+        font-size: 12px;
+        height: 18px;
+    }
+    
+    .notice-box {
+        font-size: 8.5px;
+        padding: 10px;
+    }
+    
+    .notice-box h3 {
+        font-size: 10px;
+    }
+    
+    .notice-box h5 {
+        text-align: start;
+        font-size: 9px;
+    }
+    
+    .address-block {
+        font-size: 9px;
+    }
+    
+    .cancel-statement {
+        font-size: 9px;
+    }
+    
+    .sig-line-wrapper span {
+        font-size: 8px;
+    }
+    
+    .equipment-section, .terms-section, .installation-section, .agreement-box, .signature-section, .notice-section {
+        margin-top: 15px;
+    }
+    
+    .cancellation-text {
+        margin-top: 10px;
+        font-size: 12px;
+        border: 1px solid black;
+        border-radius: 3px;
+        border-top: none;
+        padding: 8px;
+    }
+}
+    </style>
+</head>
+<body>
+
+<div class="page">
+    <div class="page-border">
+        <div class="header">
+            <div class="logo-section">
+                <img src="images/MainLogo.PNG" alt="" srcset="" width="90%" height="80%">
+            </div>
+
+            <div class="title-section">
+                <div class="main-title">Purchase Agreement/ <br>Acuerdo de Compra</div>
+            </div>
+
+           
+            <div class="wqa-section">
+                <img src="images/logo.png" alt="" srcset="">
+            </div>
+        </div>
+
+        <div class="form-row row-3cols">
+            <div class="field-box">
+                <div class="field-label">Applicant/Aplicante <span style="color: red;">*</span></div>
+                <input type="text " name="Applicant/Aplicante" class="Applicant/Aplicante" id="field-input" required>
+            </div>
+            <div class="field-box">
+                <div class="field-label">Phone/Teléfono <span style="color: red;">*</span></div>
+                <input type="tel" name="Phone/Teléfono1" class="Phone/Teléfono1" id="field-input" required>
+            </div>
+            <div class="field-box">
+                <div class="field-label">Email <span style="color: red;">*</span></div>
+                <input type="email" name="Email1" class="Email1" id="field-input" required>
+            </div>
+        </div>
+
+        <div class="form-row row-3cols">
+            <div class="field-box">
+                <div class="field-label">Co-Applicant/Co-Aplicante</div>
+                <input type="text" name="Co-Applicant/Co-Aplicante" class="Co-Applicant/Co-Aplicante" id="field-input">
+            </div>
+            <div class="field-box">
+                <div class="field-label">Phone/Teléfono</div>
+                <input type="tel" name="Phone/Teléfono2" class="Phone/Teléfono2" id="field-input">
+            </div>
+            <div class="field-box">
+                <div class="field-label">Email</div>
+                <input type="email" name="Email2" class="Email2" id="field-input">
+            </div>
+        </div>
+
+        <div class="form-row row-4cols">
+            <div class="field-box">
+                <div class="field-label">Address/Dirección <span style="color: red;">*</span></div>
+                <input type="text" name="Address/Dirección" class="Address/Dirección" id="field-input" required>
+            </div>
+            <div class="field-box">
+                <div class="field-label">City/Ciudad <span style="color: red;">*</span></div>
+                <input type="text" name="City/Ciudad" class="City/Ciudad" id="field-input" required>
+            </div>
+            <div class="field-box">
+                <div class="field-label">State/Estado <span style="color: red;">*</span></div>
+                <input type="text" name="State/Estado" class="State/Estado" id="field-input" required>
+            </div>
+            <div class="field-box">
+                <div class="field-label">Zip Code/Código Postal <span style="color: red;">*</span></div>
+                <input type="text" name="Zip Code/Código Postal" class="Zip Code/Código Postal" id="field-input" required>
+            </div>
+        </div>
+
+        <div class="equipment-section">
+            <div class="equipment-header">Included Equipment and Services / Equipos y Servicios Incluidos</div>
+            <div class="abc">
+                <div class="equipment-content">
+                    <div style="display: flex; justify-content: center; align-items: center; gap: 5px;">
+                        <input type="radio" name="10ConditionerTank" class="10ConditionerTank">10" Conditioner Tank
+                    </div>
+                </div>
+                <div class="equipment-content">
+                    <div style="display: flex; justify-content: center; align-items: center; gap: 5px;  padding-bottom: 2px;">
+                        <input type="radio" name="ReverseOsmosisunderthesink" class="ReverseOsmosisunderthesink"> Reverse Osmosis under the sink <br/>
+                    </div>
+                    <div style="display: flex; justify-content: center; align-items: center; gap: 5px; padding-bottom: 2px;">
+                        <input type="radio" name="ReverseOsmosisFaucet" class="ReverseOsmosisFaucet">Reverse Osmosis Faucet <br/>
+                    </div>
+                    <div style="display: flex; justify-content: center; align-items: center; gap: 5px;">
+                        <input type="radio" name="Stonework" class="Stonework">Stonework
+                    </div>
+                </div>
+                <div class="equipment-content">
+                    <div style="display: flex; justify-content: center; align-items: center; gap: 5px; row-gap: 2px; padding-bottom: 2px;">
+                        <input type="radio" name="ComplimentaryCleaningProducts" class="ComplimentaryCleaningProducts">  Complimentary Cleaning Products
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="terms-section">
+            <div class="terms-header">Purchase Agreement Terms / Términos del Acuerdo de Compra</div>
+            <div class="terms-content">
+                <div class="cd" style="display: flex;">
+                    <div style="display: flex; flex-direction: column;">
+                        <div class="checkbox-field">
+                            <input type="checkbox" name="cash" class="cash" required >
+                            <label for="cash">Cash /<br>Dinero en Efectivo <span style="color: red;">*</span></label>
+                            <input type="checkbox" name="financing" class="financing" required>
+                            <label for="financing">Financing /<br>Financiamiento <span style="color: red;">*</span></label>
+                        </div>
+                        <div class="de" style="display: flex; border-top: 1px solid black; ">
+                            <div class="text-field">
+                                <label for="Price/Precio">Price/Precio <span style="color: red;">*</span></label>
+                                <input type="text" name="Price/Precio" class="Price/Precio" id="field-input" required>
+                            </div>
+                            <div class="text-field">
+                                <label for="DownPayment/PagoInicial">Down Payment/Pago Inicial <span style="color: red;">*</span></label>
+                                <input type="text" name="DownPayment/PagoInicial" class="DownPayment/PagoInicial" id="field-input" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-field">
+                        All financing terms are contained in separate paperwork between you
+                        and your financing company. Inti Water is neither a broker nor a lender.
+                    </div>
+                </div>
+            </div>
+            <div class="cancellation-text">
+            If the customer decides to cancel after the three (3) day right of cancellation period, Inti Water will charge the client a restocking fee equivalent to 10% of the purchase agreement value. Si el cliente decide cancelar después de los tres (3) días del período del derecho de cancelación, Inti Water cobrará al cliente un cargo por re-almacenamiento equivalente al 10% del valor del acuerdo de compra.
+            </div>
+        </div>
+
+
+        <div class="installation-section">
+            <div class="installation-header">Installation / Instalación</div>
+            <div class="installation-row">
+                <div class="installation-field">
+                    <div class="field-label">Date/Fecha <span style="color: red;">*</span></div>
+                    <input type="date" name="Date/Fecha1" class="Date/Fecha1" id="field-input" required>
+                </div>
+                <div class="installation-field">
+                    <div class="field-label">Time/Horario <span style="color: red;">*</span></div>
+                    <input type="time" name="Time/Horario" class="Time/Horario" id="field-input" required>
+                </div>
+                <div class="installation-field">
+                    <div class="field-label"># People at Home/# Personas en Casa <span style="color: red;">*</span></div>
+                    <input type="text" name="PeopleatHome/PersonasenCasa" class="PeopleatHome/PersonasenCasa" id="field-input" required>
+                </div>
+            </div>
+            <div class="brand-row">
+                <div class="brand-field">
+                    <div class="field-label">Brand/Marca <span style="color: red;">*</span></div>
+                    <input type="text" id="field-input" name="Brand/Marca" class="Brand/Marca" style="border-bottom: 1px solid black;" required>
+                </div>
+                <div class="checkbox-inline" >
+                    <span style="font-size: 12px;">Ice Maker Connection/Conexión al Refrigerador <span style="color: red;">*</span></span>
+                    <label><input type="checkbox" name="yes"> Yes</label>
+                    <label><input type="checkbox" name="no"> No</label>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="agreement-box">
+            <strong>By signing this Purchase Agreement, you acknowledge that you have read, understood, and agree to all its terms. You have the right to receive a copy of this 
+document. Al firmar este Contrato de Compra, usted reconoce que ha leído, comprendido y acepta todos sus términos. Usted tiene derecho a recibir una 
+copia de este documento.</strong>
+        </div>
+        <div class="signature-section">
+            <div class="sig-box">
+                <canvas class="Signature1"></canvas>
+                <div style="border-top: 1px solid black;">
+                    <div class="sig-label">Applicant Signature/Firma del Aplicante <span style="color: red;">*</span></div>
+                    <label class="date-label">Date/Fecha <span style="color: red;">*</span></label>
+                    <input type="date" name="Date/Fecha2" class="Date/Fecha2" id="field-input" required>
+                </div>
+            </div>
+            <div class="sig-box">
+                <canvas class="Signature2"></canvas>
+                <div  style="border-top: 1px solid black;">
+                    <div class="sig-label">Co-Applicant Signature/Firma del Co-Aplicante</div>
+                    <label class="date-label">Date/Fecha</label>
+                    <input type="date" name="Date/Fecha3" class="Date/Fecha3" id="field-input">
+                </div>
+            </div>
+            <div class="sig-box">
+                <canvas class="Signature3"></canvas>
+                <div  style="border-top: 1px solid black;">
+                    <div class="sig-label">Representative Signature/Firma Representante  <span style="color: red;">*</span></div>
+                    <label for="Name/Nombre" class="date-label" >Name/Nombre  <span style="color: red;">*</span></label>
+                    <input type="text" name="Name/Nombre" class="Name/Nombre" id="field-input" required>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="page" style="margin-top: 30px;">
+        <div class="header" style="margin-bottom: 20px;">
+            <div class="page-border">
+        <div class="header">
+            <div class="logo-section">
+                <img src="images/MainLogo.PNG" alt="" srcset="" width="90%" height="80%">
+            </div>
+
+            <div class="title-section">
+                <div class="main-title">Purchase Agreement / <br> Acuerdo de Compra</div>
+            </div>
+
+           
+            <div class="wqa-section">
+                <img src="images/logo.png" alt="" srcset="">
+            </div>
+        </div>
+
+        <div class="notice-section">
+            <div class="notice-header">NOTICE OF RIGHT TO CANCEL</div>
+            <div class="notice-columns">
+                <div class="notice-column">
+                    <div class="notice-box">
+                        <h3>NOTICE OF RIGHT TO CANCEL</h3>
+                        
+                        <h5>Your Right to Cancel</h5>
+                        <p>You have a legal right under federal law to cancel this transaction, without any penalty or obligation, within three business days from whichever of the following events occurs last:</p>
+                        
+                        <p><strong>(1)</strong> The date of the transaction, which is <input type="date" name="Date/Fetcha4" class="Date/Fetcha4" />; or<br>
+                        <strong>(2)</strong> The date you receive your financing company disclosures; or<br>
+                        <strong>(3)</strong> The date you receive this notice of your right to cancel.</p>
+                        
+                        <p>If you cancel this transaction, within 20 calendar days after we receive your notice, we must take the steps necessary to reflect the fact that the security interest on your home has been cancelled, and we must return to you any money or property you have given us or to anyone else in connection with this transaction.</p>
+                        
+                        <p>You may keep any money or property we have given you until we have done the things mentioned above, but you must then offer to return the money or property. You may offer to return the property at your home or at the location of the property. Money must be returned to the address below. If we do not take possession of the money or property within 20 calendar days of your notice, you may keep it without further obligation.</p>
+                        
+                        <h5>How to Cancel</h5>
+                        <p>If you decide to cancel this transaction, you may do so by notifying us in writing at: Contractor Name & Address of Place of Business – print below</p>
+                        
+                        <p class="address-block"><strong>INTI WATER, 1110 NE PINE ISLAND RD UNIT 9, CAPE CORAL, FL 33909</strong></p>
+                        
+                        <p>You may use any written statement that is signed and dated by you and states your intention to cancel, or you may use this notice by dating and signing below. Keep one copy of this notice because it contains important information about your rights.</p>
+                        
+                        <p>If you cancel by mail or telegram, you must send the notice no later than midnight of <input type="text" name="midnight1" class="midnight1" />. If you send or deliver your written notice to cancel some other way, it must be delivered to the above address no later than that time.</p>
+                        
+                        <p class="cancel-statement"><strong>I HEREBY CANCEL THIS TRANSACTION.</strong></p>
+                        
+                        <div class="signature-line-section">
+                            <div class="sig-line-wrapper">
+                                <canvas class="Signature4"></canvas>
+                                <span style="font-size: 10px;">Buyer's Signature</span>
+                            </div>
+                            <div class="sig-line-wrapper" style="width: 150px;">
+                                <input type="date" name="Date/Fetcha6" class="Date/Fetcha6" id="field-input"/>
+                                <span style="font-size: 10px;">Date</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="notice-column">
+                    <div class="notice-box">
+                        <h3>NOTICE OF RIGHT TO CANCEL</h3>
+                        
+                        <h5>Your Right to Cancel</h5>
+                        <p>You have a legal right under federal law to cancel this transaction, without any penalty or obligation, within three business days from whichever of the following events occurs last:</p>
+                        
+                        <p><strong>(1)</strong> The date of the transaction, which is <input type="date" name="Date/Fetcha6" class="Date/Fetcha6" />; or<br>
+                        <strong>(2)</strong> The date you receive your financing company disclosures; or<br>
+                        <strong>(3)</strong> The date you receive this notice of your right to cancel.</p>
+                        
+                        <p>If you cancel this transaction, within 20 calendar days after we receive your notice, we must take the steps necessary to reflect the fact that the security interest on your home has been cancelled, and we must return to you any money or property you have given us or to anyone else in connection with this transaction.</p>
+                        
+                        <p>You may keep any money or property we have given you until we have done the things mentioned above, but you must then offer to return the money or property. You may offer to return the property at your home or at the location of the property. Money must be returned to the address below. If we do not take possession of the money or property within 20 calendar days of your notice, you may keep it without further obligation.</p>
+                        
+                        <h5>How to Cancel</h5>
+                        <p>If you decide to cancel this transaction, you may do so by notifying us in writing at: Contractor Name & Address of Place of Business – print below</p>
+                        
+                        <p class="address-block"><strong>INTI WATER, 1110 NE PINE ISLAND RD UNIT 9, CAPE CORAL, FL 33909</strong></p>
+                        
+                        <p>You may use any written statement that is signed and dated by you and states your intention to cancel, or you may use this notice by dating and signing below. Keep one copy of this notice because it contains important information about your rights.</p>
+                        
+                        <p>If you cancel by mail or telegram, you must send the notice no later than midnight of <input type="text" name="midnight1" class="midnight1" />. If you send or deliver your written notice to cancel some other way, it must be delivered to the above address no later than that time.</p>
+                        
+                        <p class="cancel-statement"><strong>I HEREBY CANCEL THIS TRANSACTION.</strong></p>
+                        
+                        <div class="signature-line-section">
+                            <div class="sig-line-wrapper">                        
+                                <canvas class="Signature5"></canvas>
+                                <span style="font-size: 10px;">Buyer's Signature</span>
+                            </div>
+                            <div class="sig-line-wrapper" style="width: 150px;">
+                               <input type="date" name="Date/Fetcha7" class="midnight7" id="field-input"/>
+                                <span style="font-size: 10px;">Date</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="display: flex; justify-content: center; align-items: center; margin-top: 20px;">
+            <button onclick="submitForm" style="padding: 10px; background-color: #1e5a9e; border-radius: 10px;">Send</button>
+        </div>
+    </div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+const SYNC_KEY = 'intiWaterFormData';
+let drawingCanvas = null;
+let canvases = {};
+
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('Initializing form...');
+    initializeCanvases();
+    setupSignatureListeners();
+    setupFormListeners();
+    loadFormData();
+    setupAutoSave();
+    console.log('Form initialized!');
+});
+
+// ==================== CANVAS INITIALIZATION ====================
+function initializeCanvases() {
+    const canvasIds = ['Signature1', 'Signature2', 'Signature3', 'Signature4', 'Signature5'];
+    
+    canvasIds.forEach(id => {
+        const canvas = document.querySelector(`canvas.${id}`);
+        if (!canvas) {
+            console.warn(`Canvas ${id} not found`);
+            return;
+        }
+        
+        if (!canvas.id) {
+            canvas.id = id;
+        }
+        
+        const wrapper = canvas.parentElement;
+        const dpr = window.devicePixelRatio || 1;
+        const rect = wrapper.getBoundingClientRect();
+        
+        canvas.width = rect.width * dpr;
+        canvas.height = rect.height * dpr;
+        
+        const ctx = canvas.getContext('2d');
+        ctx.scale(dpr, dpr);
+        ctx.fillStyle = 'white';
+        ctx.fillRect(0, 0, rect.width, rect.height);
+        ctx.strokeStyle = '#000';
+        ctx.lineWidth = 2;
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+        
+        canvases[id] = canvas;
+    });
+}
+
+// ==================== SIGNATURE DRAWING ====================
+function setupSignatureListeners() {
+    const canvasIds = ['Signature1', 'Signature2', 'Signature3', 'Signature4', 'Signature5'];
+    
+    canvasIds.forEach(id => {
+        const canvas = document.querySelector(`canvas.${id}`);
+        if (!canvas) return;
+        
+        canvas.addEventListener('mousedown', (e) => startDrawing(e, canvas), false);
+        canvas.addEventListener('mousemove', (e) => draw(e, canvas), false);
+        canvas.addEventListener('mouseup', () => stopDrawing(), false);
+        canvas.addEventListener('mouseout', () => stopDrawing(), false);
+        
+        canvas.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            startDrawing(e, canvas);
+        }, { passive: false });
+        
+        canvas.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+            draw(e, canvas);
+        }, { passive: false });
+        
+        canvas.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            stopDrawing();
+        }, { passive: false });
+        
+        canvas.addEventListener('touchcancel', () => stopDrawing(), false);
+    });
+}
+
+function startDrawing(e, canvas) {
+    drawingCanvas = canvas;
+    const rect = canvas.getBoundingClientRect();
+    const ctx = canvas.getContext('2d');
+    
+    let x, y;
+    if (e.touches && e.touches.length > 0) {
+        x = (e.touches[0].clientX - rect.left);
+        y = (e.touches[0].clientY - rect.top);
+    } else if (e.clientX !== undefined) {
+        x = (e.clientX - rect.left);
+        y = (e.clientY - rect.top);
+    } else {
+        return;
+    }
+    
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+}
+
+function draw(e, canvas) {
+    if (drawingCanvas !== canvas || !drawingCanvas) return;
+    
+    const rect = canvas.getBoundingClientRect();
+    const ctx = canvas.getContext('2d');
+    
+    let x, y;
+    if (e.touches && e.touches.length > 0) {
+        x = (e.touches[0].clientX - rect.left);
+        y = (e.touches[0].clientY - rect.top);
+    } else if (e.clientX !== undefined) {
+        x = (e.clientX - rect.left);
+        y = (e.clientY - rect.top);
+    } else {
+        return;
+    }
+    
+    ctx.lineTo(x, y);
+    ctx.stroke();
+    saveFormData();
+}
+
+function stopDrawing() {
+    drawingCanvas = null;
+}
+
+// ==================== FORM LISTENERS ====================
+function setupFormListeners() {
+    const allInputs = document.querySelectorAll('input, select, textarea');
+    
+    allInputs.forEach(element => {
+        element.addEventListener('change', saveFormData);
+        element.addEventListener('input', saveFormData);
+    });
+}
+
+// ==================== DATA PERSISTENCE ====================
+function saveFormData() {
+    const data = {};
+    const allInputs = document.querySelectorAll('input, select, textarea');
+    
+    allInputs.forEach(input => {
+        const name = input.name;
+        if (!name) return;
+        
+        if (input.type === 'checkbox' || input.type === 'radio') {
+            if (input.checked) {
+                data[name] = input.value;
+            }
+        } else {
+            data[name] = input.value;
+        }
+    });
+    
+    const canvasIds = ['Signature1', 'Signature2', 'Signature3', 'Signature4', 'Signature5'];
+    canvasIds.forEach(id => {
+        const canvas = document.querySelector(`canvas.${id}`);
+        if (canvas) {
+            data[id] = canvas.toDataURL('image/png');
+        }
+    });
+    
+    try {
+        localStorage.setItem(SYNC_KEY, JSON.stringify(data));
+        console.log('Form data saved');
+    } catch (e) {
+        console.warn('LocalStorage error:', e);
+    }
+}
+
+function loadFormData() {
+    try {
+        const saved = localStorage.getItem(SYNC_KEY);
+        if (saved) {
+            const data = JSON.parse(saved);
+            
+            Object.keys(data).forEach(key => {
+                if (key.startsWith('Signature')) {
+                    return;
+                }
+                
+                const element = document.querySelector(`[name="${key}"]`);
+                if (element) {
+                    if (element.type === 'checkbox' || element.type === 'radio') {
+                        if (element.value === data[key]) {
+                            element.checked = true;
+                        }
+                    } else {
+                        element.value = data[key];
+                    }
+                }
+            });
+            
+            console.log('Form data loaded');
+        }
+    } catch (e) {
+        console.warn('Error loading form data:', e);
+    }
+}
+
+function setupAutoSave() {
+    setInterval(saveFormData, 30000);
+    
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            saveFormData();
+        }
+    });
+}
+
+function validateForm() {
+    const errors = [];
+    
+    const requiredFields = [
+        'Applicant/Aplicante',
+        'Phone/Teléfono1',
+        'Email1',
+        'Address/Dirección',
+        'City/Ciudad',
+        'State/Estado',
+        'Zip Code/Código Postal',
+        'Price/Precio',
+        'DownPayment/PagoInicial',
+        'Date/Fecha1',
+        'Time/Horario',
+        'PeopleatHome/PersonasenCasa',
+        'Name/Nombre'
+    ];
+    
+    requiredFields.forEach(fieldName => {
+        const element = document.querySelector(`[name="${fieldName}"]`);
+        if (element && (!element.value || element.value.trim() === '')) {
+            errors.push(`<strong>${fieldName}</strong> is required`);
+        }
+    });
+    
+    const email1 = document.querySelector('[name="Email1"]');
+    if (email1 && email1.value && !isValidEmail(email1.value)) {
+        errors.push('<strong>Invalid email</strong> format');
+    }
+    
+    if (!isCanvasHasDrawing('Signature1')) {
+        errors.push('<strong>⚠️ Applicant Signature is REQUIRED</strong>');
+    }
+    
+    if (!isCanvasHasDrawing('Signature3')) {
+        errors.push('<strong>⚠️ Representative Signature is REQUIRED</strong>');
+    }
+    
+    const paymentOptions = document.querySelectorAll('[name="cash"], [name="financing"]');
+    let hasPayment = false;
+    paymentOptions.forEach(option => {
+        if (option.checked) hasPayment = true;
+    });
+    
+    if (!hasPayment) {
+        errors.push('<strong>⚠️ Select a Payment Method (Cash or Financing)</strong>');
+    }
+    
+    const iceMakerOptions = document.querySelectorAll('[name="yes"], [name="no"]');
+    let hasIceMaker = false;
+    iceMakerOptions.forEach(option => {
+        if (option.checked) hasIceMaker = true;
+    });
+    
+    if (!hasIceMaker) {
+        errors.push('<strong>⚠️ Select Ice Maker Connection (Yes or No)</strong>');
+    }
+    
+    return errors;
+}
+
+function isCanvasHasDrawing(canvasId) {
+    const canvas = document.querySelector(`canvas.${canvasId}`);
+    if (!canvas) return false;
+    
+    const ctx = canvas.getContext('2d');
+    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    const data = imageData.data;
+    
+    for (let i = 0; i < data.length; i += 4) {
+        if (data[i + 3] > 128) {
+            return true;
+        }
+    }
+    return false;
+}
+
+function isValidEmail(email) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+}
+
+function getFormDataForEmail() {
+    const data = {
+        applicant_name: document.querySelector('[name="Applicant/Aplicante"]')?.value || 'N/A',
+        phone: document.querySelector('[name="Phone/Teléfono1"]')?.value || 'N/A',
+        email: document.querySelector('[name="Email1"]')?.value || 'N/A',
+        co_applicant: document.querySelector('[name="Co-Applicant/Co-Aplicante"]')?.value || 'N/A',
+        address: document.querySelector('[name="Address/Dirección"]')?.value || 'N/A',
+        city: document.querySelector('[name="City/Ciudad"]')?.value || 'N/A',
+        state: document.querySelector('[name="State/Estado"]')?.value || 'N/A',
+        zip_code: document.querySelector('[name="Zip Code/Código Postal"]')?.value || 'N/A',
+        equipment: document.querySelector('[name="equipment"]:checked')?.value || 'Not Selected',
+        brand: document.querySelector('[name="Brand/Marca"]')?.value || 'N/A',
+        price: document.querySelector('[name="Price/Precio"]')?.value || 'N/A',
+        down_payment: document.querySelector('[name="DownPayment/PagoInicial"]')?.value || 'N/A',
+        payment_method: document.querySelector('[name="payment"]:checked')?.value || 'Not Selected',
+        install_date: document.querySelector('[name="Date/Fecha1"]')?.value || 'N/A',
+        install_time: document.querySelector('[name="Time/Horario"]')?.value || 'N/A',
+        people_at_home: document.querySelector('[name="PeopleatHome/PersonasenCasa"]')?.value || 'N/A',
+        ice_maker: document.querySelector('[name="icemaker"]:checked')?.value || 'Not Selected',
+        representative_name: document.querySelector('[name="Name/Nombre"]')?.value || 'N/A',
+        signature_date1: document.querySelector('[name="Date/Fecha2"]')?.value || 'N/A'
+    };
+    
+    return data;
+}
+
+async function sendEmailToBackend(formData, pdfData) {
+    try {
+        const response = await fetch('https://credtt-application-backend.vercel.app/submit-form', {
+            method: 'POST',
+            body: JSON.stringify({
+                email: formData.email,
+                formPdf: pdfData
+            })
+        });
+        
+        const result = await response.json();
+        
+        if (result.success) {
+            return { success: true };
+        } else {
+            return { success: false, message: result.message || 'Error sending email' };
+        }
+    } catch (error) {
+        console.error('Backend error:', error);
+        return { success: false, message: 'Could not connect to server' };
+    }
+}
+
+function captureAllSignatures() {
+    const signatures = {};
+    const canvasIds = ['Signature1', 'Signature2', 'Signature3','Signature4','Signature5'];
+    
+    canvasIds.forEach(id => {
+        const canvas = document.querySelector(`canvas.${id}`);
+        if (canvas) {
+            try {
+                const ctx = canvas.getContext('2d');
+                const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                const data = imageData.data;
+                
+                let hasDrawing = false;
+                for (let i = 0; i < data.length; i += 4) {
+                    if (data[i + 3] > 128) {
+                        hasDrawing = true;
+                        break;
+                    }
+                }
+                
+                if (hasDrawing) {
+                    signatures[id] = canvas.toDataURL('image/png');
+                    console.log(`Signature ${id} captured`);
+                }
+            } catch (e) {
+                console.error(`Error with ${id}:`, e);
+            }
+        }
+    });
+    
+    console.log('Total signatures captured:', Object.keys(signatures).length);
+    return signatures;
+}
+
+async function generatePDF() {
+    return new Promise(async (resolve, reject) => {
+        try {
+            if (typeof html2canvas === 'undefined' || typeof jspdf === 'undefined') {
+                reject(new Error('Required libraries not loaded'));
+                return;
+            }
+
+            const { jsPDF } = jspdf;
+            
+            const allPages = document.querySelectorAll('.page');
+            const pages = [allPages[0], allPages[1]]; 
+            
+            const signatures = captureAllSignatures();
+            console.log('Generating PDF with signatures:', signatures);
+            
+            const doc = new jsPDF('p', 'mm', 'a4');
+            let isFirstPage = true;
+
+            for (let pageIndex = 0; pageIndex < pages.length; pageIndex++) {
+                const pageElement = pages[pageIndex];
+                const clone = pageElement.cloneNode(true);
+                
+                console.log(`Processing page ${pageIndex + 1}...`);
+                
+                clone.querySelectorAll('button, .button-section, .button-container').forEach(el => {
+                    el.style.display = 'none';
+                });
+                
+                const canvasIds = ['Signature1', 'Signature2', 'Signature3', 'Signature4', 'Signature5'];
+                
+                canvasIds.forEach(id => {
+                    const canvasesList = clone.querySelectorAll(`canvas.${id}`);
+                    console.log(canvasesList);
+                    canvasesList.forEach(canvas => {
+                        if (signatures[id]) {
+                            const img = document.createElement('img');
+                            img.src = signatures[id];
+                            img.style.width = '100%';
+                            img.style.minHeight = '80px';
+                            img.style.height = 'auto';
+                            img.style.border = '1px solid #ccc';
+                            img.style.visibility = 'visible';
+                            img.style.display = 'block';
+                            img.style.backgroundColor = 'white';
+                            img.style.pageBreakInside = 'avoid';
+                            console.log(`Signature ${id} added to page ${pageIndex + 1}`);
+                            canvas.parentNode.replaceChild(img, canvas);
+                        } else {
+                            canvas.style.border = '1px solid #ddd';
+                            canvas.style.backgroundColor = '#f9f9f9';
+                            canvas.style.display = 'block';
+                            canvas.style.minHeight = '80px';
+                        }
+                    });
+                });
+                
+                clone.style.width = '100%';
+                clone.style.height = 'auto';
+                clone.style.padding = '0';
+                clone.style.margin = '0';
+                clone.style.position = 'absolute';
+                clone.style.left = '-9999px';
+                clone.style.top = '0';
+                clone.style.visibility = 'visible';
+                clone.style.backgroundColor = 'white';
+                clone.style.boxShadow = 'none';
+                clone.style.pageBreakAfter = 'always';
+                
+                document.body.appendChild(clone);
+                
+                await new Promise(resolve => {
+                    const images = clone.getElementsByTagName('img');
+                    let loadedCount = 0;
+                    
+                    if (images.length === 0) {
+                        setTimeout(resolve, 500);
+                        return;
+                    }
+                    
+                    for (let img of images) {
+                        if (img.complete) {
+                            loadedCount++;
+                        } else {
+                            img.onload = () => {
+                                loadedCount++;
+                                if (loadedCount === images.length) resolve();
+                            };
+                            img.onerror = () => {
+                                console.warn('Image failed to load');
+                                loadedCount++;
+                                if (loadedCount === images.length) resolve();
+                            };
+                        }
+                    }
+                    
+                    if (loadedCount === images.length) resolve();
+                });
+                
+                const canvas = await html2canvas(clone, {
+                    scale: 2,
+                    useCORS: true,
+                    backgroundColor: '#ffffff',
+                    logging: false,
+                    allowTaint: true,
+                    windowWidth: 1240,
+                    windowHeight: clone.scrollHeight,
+                    imageTimeout: 5000
+                });
+                
+                console.log(`Canvas captured for page ${pageIndex + 1}: ${canvas.width}x${canvas.height}`);
+                
+                document.body.removeChild(clone);
+                
+                const imgData = canvas.toDataURL('image/png');
+                const imgWidth = 210; 
+                const imgHeight = (canvas.height * imgWidth) / canvas.width;
+                
+                if (!isFirstPage) {
+                    doc.addPage();
+                }
+                
+                doc.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+                console.log(`Page ${pageIndex + 1} added to PDF (${imgWidth}mm x ${imgHeight}mm)`);
+                
+                isFirstPage = false;
+            }
+            
+            const totalPages = doc.internal.pages.length - 1;
+            for (let i = 1; i <= totalPages; i++) {
+                doc.setPage(i);
+                doc.setFontSize(8);
+                doc.setTextColor(128, 128, 128);
+                doc.text(`Generated: ${new Date().toLocaleString()}`, 10, doc.internal.pageSize.getHeight() - 8);
+                doc.text(`Page ${i} of ${totalPages}`, doc.internal.pageSize.getWidth() - 40, doc.internal.pageSize.getHeight() - 8);
+            }
+            
+            
+            const pdfDataUrl = doc.output('datauristring');
+            resolve(pdfDataUrl);
+            
+        } catch (error) {
+            console.error('PDF Generation Error:', error);
+            reject(error);
+        }
+    });
+}
+
+async function submitForm() {
+    const errors = validateForm();
+    
+    if (errors.length > 0) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Form Validation Error!',
+            html: '<ul style="text-align: left; list-style: none; padding: 0;">' + 
+                  errors.map(e => `<li style="padding: 8px 0;">${e}</li>`).join('') + 
+                  '</ul>',
+            confirmButtonColor: '#1e5a9e',
+            confirmButtonText: 'Fix Errors'
+        });
+        return;
+    }
+    
+    Swal.fire({
+        title: 'Sending Form...',
+        html: 'Please wait while we process your submission.',
+        icon: 'info',
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        didOpen: async () => {
+            Swal.showLoading();
+            
+            try {
+                console.log('=== FORM SUBMISSION STARTED ===');
+                const formData = getFormDataForEmail();
+                console.log('Form data collected');
+                
+                const signatures = captureAllSignatures();
+                console.log('Signatures:', signatures);
+                
+                const pdfData = await generatePDF();
+                console.log('PDF generated successfully');
+                
+                const link = document.createElement('a');
+                link.href = pdfData;
+                link.download = `PurchaseAgreement_${Date.now()}.pdf`;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                console.log('PDF downloaded');
+                
+                const emailResult = await sendEmailToBackend(formData, pdfData);
+                console.log('Email result:', emailResult);
+                
+                if (emailResult.success) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Submitted Successfully!',
+                        html: ``,
+                        confirmButtonColor: '#1e5a9e'
+                    });
+                } else {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Error Sending Email',
+                        html: ` ${emailResult.message}`,
+                        confirmButtonColor: '#1e5a9e'
+                    });
+                }
+            } catch (error) {
+                console.error('ERROR:', error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error!',
+                    text: error.message || 'Something went wrong',
+                    confirmButtonColor: '#1e5a9e'
+                });
+            }
+        }
+    });
+}
+
+const btn = document.querySelector('button');
+if (btn) {
+    btn.addEventListener('click', submitForm);
+}
+</script> 
+</body>
+</html>
