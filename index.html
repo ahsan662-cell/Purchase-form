@@ -1321,6 +1321,7 @@ async function sendEmailToBackend(formData, pdfData) {
     try {
         const response = await fetch('https://credtt-application-backend.vercel.app/submit-form', {
             method: 'POST',
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
                 email: formData.email,
                 formPdf: pdfData
@@ -1558,12 +1559,6 @@ async function submitForm() {
                 const pdfData = await generatePDF();
                 console.log('PDF generated successfully');
                 
-                const link = document.createElement('a');
-                link.href = pdfData;
-                link.download = `PurchaseAgreement_${Date.now()}.pdf`;
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
                 console.log('PDF downloaded');
                 
                 const emailResult = await sendEmailToBackend(formData, pdfData);
