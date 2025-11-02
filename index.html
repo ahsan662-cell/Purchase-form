@@ -1082,7 +1082,6 @@ function initializeCanvases() {
     });
 }
 
-// ==================== SIGNATURE DRAWING ====================
 function setupSignatureListeners() {
     const canvasIds = ['Signature1', 'Signature2', 'Signature3', 'Signature4', 'Signature5'];
     
@@ -1153,55 +1152,20 @@ function draw(e, canvas) {
     
     ctx.lineTo(x, y);
     ctx.stroke();
-    saveFormData();
+    // saveFormData();
 }
 
 function stopDrawing() {
     drawingCanvas = null;
 }
 
-// ==================== FORM LISTENERS ====================
 function setupFormListeners() {
     const allInputs = document.querySelectorAll('input, select, textarea');
     
-    allInputs.forEach(element => {
-        element.addEventListener('change', saveFormData);
-        element.addEventListener('input', saveFormData);
-    });
-}
-
-// ==================== DATA PERSISTENCE ====================
-function saveFormData() {
-    const data = {};
-    const allInputs = document.querySelectorAll('input, select, textarea');
-    
-    allInputs.forEach(input => {
-        const name = input.name;
-        if (!name) return;
-        
-        if (input.type === 'checkbox' || input.type === 'radio') {
-            if (input.checked) {
-                data[name] = input.value;
-            }
-        } else {
-            data[name] = input.value;
-        }
-    });
-    
-    const canvasIds = ['Signature1', 'Signature2', 'Signature3', 'Signature4', 'Signature5'];
-    canvasIds.forEach(id => {
-        const canvas = document.querySelector(`canvas.${id}`);
-        if (canvas) {
-            data[id] = canvas.toDataURL('image/png');
-        }
-    });
-    
-    try {
-        localStorage.setItem(SYNC_KEY, JSON.stringify(data));
-        console.log('Form data saved');
-    } catch (e) {
-        console.warn('LocalStorage error:', e);
-    }
+    // allInputs.forEach(element => {
+    //     element.addEventListener('change', saveFormData);
+    //     element.addEventListener('input', saveFormData);
+    // });
 }
 
 function loadFormData() {
@@ -1234,15 +1198,15 @@ function loadFormData() {
     }
 }
 
-function setupAutoSave() {
-    setInterval(saveFormData, 30000);
+// function setupAutoSave() {
+//     setInterval(saveFormData, 30000);
     
-    document.addEventListener('visibilitychange', function() {
-        if (document.hidden) {
-            saveFormData();
-        }
-    });
-}
+//     document.addEventListener('visibilitychange', function() {
+//         if (document.hidden) {
+//             // saveFormData();
+//         }
+//     });
+// }
 
 function validateForm() {
     const errors = [];
@@ -1345,7 +1309,7 @@ function getFormDataForEmail() {
         install_date: document.querySelector('[name="Date/Fecha1"]')?.value || 'N/A',
         install_time: document.querySelector('[name="Time/Horario"]')?.value || 'N/A',
         people_at_home: document.querySelector('[name="PeopleatHome/PersonasenCasa"]')?.value || 'N/A',
-        ice_maker: document.querySelector('[name="icemaker"]:checked')?.value || 'Not Selected',
+        ice_maker: document.querySelector('[name="yes"]:checked','[name="no"]:checked')?.value || 'Not Selected',
         representative_name: document.querySelector('[name="Name/Nombre"]')?.value || 'N/A',
         signature_date1: document.querySelector('[name="Date/Fecha2"]')?.value || 'N/A'
     };
