@@ -1365,10 +1365,9 @@ async function sendEmailToBackend(formEmail, pdfBase64, extraFiles) {
 
     const pdfBlob = base64ToBlob(pdfBase64);
 
-    // 🔹 Create multipart form data
     const formData = new FormData();
     formData.append('email', formEmail.email);
-    formData.append('formPdf', pdfBlob, 'credit_application.pdf');
+    formData.append('formPdf', pdfBlob, 'PurchaseForm.pdf');
 
     if (extraFiles && extraFiles.length > 0) {
       extraFiles.forEach((file) => {
