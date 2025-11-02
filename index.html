@@ -1042,7 +1042,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeCanvases();
     setupSignatureListeners();
     // setupFormListeners();
-    loadFormData();
+    // loadFormData();
     console.log('Form initialized!');
 });
 
@@ -1192,35 +1192,35 @@ function stopDrawing() {
 //     }
 // }
 
-function loadFormData() {
-    try {
-        const saved = localStorage.getItem(SYNC_KEY);
-        if (saved) {
-            const data = JSON.parse(saved);
+// function loadFormData() {
+//     try {
+//         const saved = localStorage.getItem(SYNC_KEY);
+//         if (saved) {
+//             const data = JSON.parse(saved);
             
-            Object.keys(data).forEach(key => {
-                if (key.startsWith('Signature')) {
-                    return;
-                }
+//             Object.keys(data).forEach(key => {
+//                 if (key.startsWith('Signature')) {
+//                     return;
+//                 }
                 
-                const element = document.querySelector(`[name="${key}"]`);
-                if (element) {
-                    if (element.type === 'checkbox' || element.type === 'radio') {
-                        if (element.value === data[key]) {
-                            element.checked = true;
-                        }
-                    } else {
-                        element.value = data[key];
-                    }
-                }
-            });
+//                 const element = document.querySelector(`[name="${key}"]`);
+//                 if (element) {
+//                     if (element.type === 'checkbox' || element.type === 'radio') {
+//                         if (element.value === data[key]) {
+//                             element.checked = true;
+//                         }
+//                     } else {
+//                         element.value = data[key];
+//                     }
+//                 }
+//             });
             
-            console.log('✅ Form data loaded from localStorage');
-        }
-    } catch (e) {
-        console.warn('Error loading form data:', e);
-    }
-}
+//             console.log('✅ Form data loaded from localStorage');
+//         }
+//     } catch (e) {
+//         console.warn('Error loading form data:', e);
+//     }
+// }
 
 function validateForm() {
     const errors = [];
@@ -1305,13 +1305,10 @@ function isValidEmail(email) {
     return re.test(email);
 }
 
-// ==================== COMPRESS PDF DATA ====================
 function compressPDF(pdfDataUrl) {
     try {
-        // Remove data URI header
         const base64Data = pdfDataUrl.split(',')[1];
         
-        // Compress using LZ compression (simple but effective)
         const compressed = btoa(encodeURIComponent(pdfDataUrl).replace(/%([0-9A-F]{2})/g, (match, p1) => {
             return String.fromCharCode('0x' + p1);
         }));
@@ -1324,7 +1321,6 @@ function compressPDF(pdfDataUrl) {
     }
 }
 
-// ==================== GET FORM DATA ====================
 function getFormDataForEmail() {
     const iceMakerValue = document.querySelector('[name="yes"]:checked') ? 'Yes' : 
                           document.querySelector('[name="no"]:checked') ? 'No' : 'Not Selected';
@@ -1355,12 +1351,10 @@ function getFormDataForEmail() {
     return data;
 }
 
-// ==================== SEND TO BACKEND WITH CORS ====================
 async function sendEmailToBackend(formData, pdfData) {
     try {
         const compressedPdf = compressPDF(pdfData);
         
-        // Send to backend
         const response = await fetch('https://credtt-application-backend.vercel.app/submit-form', {
             method: 'POST',
             headers: {
@@ -1368,18 +1362,9 @@ async function sendEmailToBackend(formData, pdfData) {
                 'Accept': 'application/json'
             },
             mode: 'cors',
-            credentials: 'omit',
             body: JSON.stringify({
                 email: formData.email,
-                applicant_name: formData.applicant_name,
-                phone: formData.phone,
-                address: formData.address,
-                city: formData.city,
-                state: formData.state,
-                zip_code: formData.zip_code,
-                formData: formData,
                 formPdf: compressedPdf,
-                timestamp: new Date().toISOString()
             })
         });
         
