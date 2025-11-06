@@ -1674,7 +1674,15 @@ async function generatePDF() {
         }
     });
 }
-
+function formatDateToMMDDYYYY(dateStr) {
+    if (!dateStr) return '';
+    const date = new Date(dateStr);
+    if (isNaN(date)) return dateStr;
+    const mm = String(date.getMonth() + 1).padStart(2, '0');
+    const dd = String(date.getDate()).padStart(2, '0');
+    const yyyy = date.getFullYear();
+    return `${mm}/${dd}/${yyyy}`;
+}
 async function submitForm() {
     const errors = validateForm();
     
@@ -1707,12 +1715,14 @@ async function submitForm() {
                 
                 const signatures = captureAllSignatures();
                 console.log('Signatures:', signatures);
-                
+                const dateInputs = document.querySelectorAll('input[type="date"]');
+                dateInputs.forEach(input => {
+                    if (input.value) {
+                        const original = input.value;
+                        input.value = formatDateToMMDDYYYY(original);
+                    }
+                });
                 const pdfData = await generatePDF();
-                console.log('PDF generated successfully');
-                
-                console.log('PDF downloaded');
-                
                 const emailResult = await sendEmailToBackend(formEmail, pdfData);
                 console.log('Email result:', emailResult);
                 
